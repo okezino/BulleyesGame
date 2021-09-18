@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:first_android/label.dart';
 
 class Score extends StatelessWidget {
   Score({Key? key, required this.finalScore, required this.round, required this.startOver})
@@ -13,24 +14,29 @@ class Score extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        FlatButton(
-          child: const Text("Start Over"),
+        StyleButton(
+          icon: Icons.refresh,
           onPressed: () {
             startOver();
           },
         ),
         Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Row(
-              children: <Widget>[const Text("Score: "), Text(finalScore.toString())],
+            padding: const EdgeInsets.only(left: 32, right: 32
+            ),
+            child: Column(
+              children: <Widget>[ Text("Score: ",style: LabelStyle.bodyText1(context),),
+                Text(finalScore.toString(), style: ScoreNumberStyle.headline4(context),)],
             )),
         Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: <Widget>[const Text("Round: "), Text(round.toString())],
+            padding: const EdgeInsets.only(left: 32, right: 32
+            ),
+            child: Column(
+              children: <Widget>[ Text("Round: ", style: LabelStyle.bodyText1(context),),
+                Text(round.toString(),
+                    style: ScoreNumberStyle.headline4(context))],
             )),
-        FlatButton(
-          child: const Text("Press Again"),
+        StyleButton(
+          icon: Icons.info,
           onPressed: () {},
         )
       ],

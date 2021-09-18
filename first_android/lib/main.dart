@@ -1,3 +1,5 @@
+import 'package:first_android/label.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:first_android/score.dart';
@@ -5,6 +7,7 @@ import 'package:first_android/control.dart';
 import 'package:first_android/gamemodel.dart';
 import 'package:first_android/prompt.dart';
 import 'dart:math';
+
 
 void main() {
   runApp(const MyApp());
@@ -64,17 +67,24 @@ class _GameState extends State<GamePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Prompt(targetValue: _model.target),
-              Control(model: _model),
-              FlatButton(
-                child: Text("Hit Me!!",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.green)),
-                onPressed: () {
-                  _showAlert(context);
-                },
+              Padding(
+                padding: const EdgeInsets.only(top:48,bottom: 32),
+                child: Prompt(targetValue: _model.target),
               ),
-              Score(finalScore: _model.totalScore, round: _model.round, startOver: _startOver)
+              Control(model: _model),
+              Padding(
+                padding: const EdgeInsets.only(top:16.0),
+                child: HitButton(
+                  text: "Hit Me!!",
+                  onPressed: () {
+                    _showAlert(context);
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Score(finalScore: _model.totalScore, round: _model.round, startOver: _startOver),
+              )
             ],
           ),
         ),
@@ -124,8 +134,8 @@ class _GameState extends State<GamePage> {
   }
 
   void _showAlert(BuildContext context) {
-    Widget Okbutton = FlatButton(
-        child: Text("Ok!!"),
+    Widget Okbutton = StyleButton(
+        icon: Icons.close,
         onPressed: () {
           Navigator.of(context).pop();
           _alertVisibility = !_alertVisibility;
@@ -140,12 +150,24 @@ class _GameState extends State<GamePage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text(_alertTitle()),
-            content: Text("This is my slide point ${_getCurrentstate()} \n" +
-                "Your Score ${_getPointForCurrentRound()}"),
+            title: Text(_alertTitle(),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 32.0),),
+            content:Column(
+              mainAxisSize: MainAxisSize.min,
+              children:  <Widget>[ Text("THE SLIDER VALUE IS", textAlign: TextAlign.center ),
+                Text("this ${_getCurrentstate()}",
+                    textAlign: TextAlign.center,
+                style: TargetStyle.headline4(context),),
+                Text("Your Score ${_getPointForCurrentRound()} points this Round",
+                    textAlign: TextAlign.center )
+
+              ],
+            ) ,
             actions: <Widget>[Okbutton],
             elevation: 5,
           );
         });
   }
 }
+// Text("This is my slide point ${_getCurrentstate()} \n" +
+// "Your Score ${_getPointForCurrentRound()}")
