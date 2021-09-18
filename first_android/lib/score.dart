@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:first_android/label.dart';
+import 'package:first_android/about.dart';
 
 class Score extends StatelessWidget {
   Score({Key? key, required this.finalScore, required this.round, required this.startOver})
@@ -37,7 +38,12 @@ class Score extends StatelessWidget {
             )),
         StyleButton(
           icon: Icons.info,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AboutPage())
+            );
+
+          },
         )
       ],
     );

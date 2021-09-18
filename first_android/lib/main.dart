@@ -7,6 +7,7 @@ import 'package:first_android/control.dart';
 import 'package:first_android/gamemodel.dart';
 import 'package:first_android/prompt.dart';
 import 'dart:math';
+import 'package:first_android/about.dart';
 
 
 void main() {
@@ -54,7 +55,7 @@ class _GameState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,image:DecorationImage(image: AssetImage("images/bg.png"),
       fit: BoxFit.cover)
       ),

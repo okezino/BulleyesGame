@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.first_android">
    <application
-        android:label="first_android"
+        android:label="Bullseye"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
